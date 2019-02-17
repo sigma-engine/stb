@@ -1,14 +1,13 @@
 cmake_minimum_required(VERSION 3.5)
 project(libstb VERSION 1.0.0 LANGUAGES CXX)
 
-file(WRITE "${CMAKE_BINARY_DIR}/stb_image.cpp" 
-    "#define STB_IMAGE_IMPLEMENTATION\n" 
-    "#include \"stb_image.h\"\n"
+file(GENERATE OUTPUT "${CMAKE_BINARY_DIR}/stb_image.cpp"
+    CONTENT "#define STB_IMAGE_IMPLEMENTATION\n#include \"stb_image.h\"\n"
 )
 
 add_library(stb_image "${CMAKE_BINARY_DIR}/stb_image.cpp")
 
-add_library(stb::image ALIAS stb_image)
+add_library(stb::stb_image ALIAS stb_image)
 
 target_include_directories(stb_image
     PUBLIC
